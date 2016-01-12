@@ -34,6 +34,7 @@ import com.example.dexter.jedi_starwars.Service.Sword;
 public class MainActivity extends Activity {
 
      private MySharedPreference pref;
+    Intent intent ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +51,8 @@ public class MainActivity extends Activity {
 
             }
         });
+        intent = new Intent(MainActivity.this,Sword.class);
 
-        startService(new Intent(MainActivity.this, Sword.class));
 
     }
 
@@ -103,7 +104,7 @@ public class MainActivity extends Activity {
                     int weapon = radioGroup.indexOfChild(radioButton);
 
                     if(checkbox.isChecked()){
-                        stopService(new Intent(MainActivity.this, Sword.class));
+                        stopService(intent);
                         Log.i("YAHOO", "Checkbox Checked");
                     }else{
                         Log.i("YAHOO", "Checkbox Not Checked");
@@ -132,10 +133,10 @@ public class MainActivity extends Activity {
                         Log.i("YAHOO", "Stopping and Starting");
                         //stopService(serviceIntent);
                         //startService(serviceIntent);
-                        stopService(new Intent(MainActivity.this, Sword.class));
+                        stopService(intent);
                         Log.i("YAHOO", pref.getSound());
 
-                        startService(new Intent(MainActivity.this, Sword.class));
+                        startService(intent);
 
                     }
 
